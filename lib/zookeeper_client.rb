@@ -11,8 +11,8 @@ class ZkStat
 end
 
 class ZooKeeper < CZooKeeper
-  def initialize(host)
-    super(host)
+  def initialize(host, log_level = LOG_LEVEL_INFO)
+    super(host, log_level)
     @watchers = {} # path => [ block, block, ... ]
   end
 

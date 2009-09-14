@@ -68,7 +68,7 @@ static VALUE array_from_stat(const struct Stat* stat) {
 		     LL2NUM(stat->ephemeralOwner));
 }
 
-static VALUE method_initialize(VALUE self, VALUE hostPort) {
+static VALUE method_initialize(VALUE self, VALUE hostPort, VALUE logLevel) {
   VALUE data;
   struct zk_rb_data* zk = NULL;
 
@@ -76,7 +76,7 @@ static VALUE method_initialize(VALUE self, VALUE hostPort) {
 
   data = Data_Make_Struct(ZooKeeper, struct zk_rb_data, 0, free_zk_rb_data, zk);
 
-  zoo_set_debug_level(ZOO_LOG_LEVEL_INFO);
+  zoo_set_debug_level(FIX2INT(logLevel));
   zoo_deterministic_conn_order(0);
   zk->zh = zookeeper_init(RSTRING(hostPort)->ptr, watcher, 10000, &zk->myid, (void*)self, 0);
   if (!zk->zh) {
@@ -195,4 +195,9 @@ void Init_zookeeper_c() {
   rb_define_const(ZooKeeper, "CONNECTED_STATE", INT2FIX(ZOO_CONNECTED_STATE));
   rb_define_const(ZooKeeper, "AUTH_FAILED_STATE", INT2FIX(ZOO_AUTH_FAILED_STATE));
   rb_define_const(ZooKeeper, "EXPIRED_SESSION_STATE", INT2FIX(ZOO_EXPIRED_SESSION_STATE));
+
+  rb_define_const(ZooKeeper, "LOG_LEVEL_ERROR", INT2FIX(ZOO_LOG_LEVEL_ERROR));
+  rb_define_const(ZooKeeper, "LOG_LEVEL_WARN", INT2FIX(ZOO_LOG_LEVEL_WARN));
+  rb_define_const(ZooKeeper, "LOG_LEVEL_INFO", INT2FIX(ZOO_LOG_LEVEL_INFO));
+  rb_define_const(ZooKeeper, "LOG_LEVEL_DEBUG", INT2FIX(ZOO_LOG_LEVEL_DEBUG));
 }
