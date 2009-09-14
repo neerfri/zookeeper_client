@@ -23,14 +23,14 @@ dirty.
 == INSTALL:
 
   $ gem sources -a http://gems.github.com/
-  $ gem install myelin-zookeeper_client
+  $ gem install neerfri-zookeeper_client
 
 == USAGE:
 
 = Connect to a server
 
   require 'rubygems'
-  require 'myelin-zookeeper_client'
+  require 'zookeeper_client'
   z = ZooKeeper.new("localhost:2181")
 
 = Create, set and read nodes
