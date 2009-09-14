@@ -177,7 +177,7 @@ static VALUE method_set(VALUE self, VALUE path, VALUE data, VALUE version) {
 
 void Init_zookeeper_c() {
   ZooKeeper = rb_define_class("CZooKeeper", rb_cObject);
-  rb_define_method(ZooKeeper, "initialize", method_initialize, 1);
+  rb_define_method(ZooKeeper, "initialize", method_initialize, 2);
   rb_define_method(ZooKeeper, "ls", method_ls, 1);
   rb_define_method(ZooKeeper, "exists", method_exists, 2);
   rb_define_method(ZooKeeper, "create", method_create, 3);
