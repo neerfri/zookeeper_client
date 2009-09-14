@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "zookeeper_client"
-  s.version = "0.0.5"
+  s.version = "0.0.6"
   s.date = "2008-07-20"
   s.summary = "Ruby wrapper for the ZooKeeper C client library"
   s.email = "justin@hotpotato.com"
